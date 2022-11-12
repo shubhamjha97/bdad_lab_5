@@ -1,5 +1,8 @@
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext._
+
 object Main {
-  def loadData(path: String): org.apache.spark.rdd.RDD[(String, String)] = {
+  def loadData(path: String, sc: org.apache.spark.SparkContext): org.apache.spark.rdd.RDD[(String, String)] = {
     sc.wholeTextFiles(path)
   }
 
@@ -16,8 +19,10 @@ object Main {
   }
 
   def main: Unit = {
+    val sc = new SparkContext()
+
     // Load data
-    val rawData = loadData("loudacre/activations")
+    val rawData = loadData("loudacre/activations", sc)
 
     // Flatten data
     val flatData = flattenData(rawData)

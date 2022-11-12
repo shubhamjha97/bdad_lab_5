@@ -18,7 +18,7 @@ object Main {
     data.map(x => s"${x._1}:${x._2}")
   }
 
-  def main: Unit = {
+  def main(args: Array[String]): Unit = {
     val sc = new SparkContext()
 
     // Load data
